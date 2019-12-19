@@ -1,0 +1,24 @@
+{
+    "name": "upstatement/timber-starter-theme",
+    "description": "Starter theme to build a Timber theme",
+    "type":"wordpress-theme",
+    "minimum-stability" : "stable",
+    "autoload": {
+      "psr-4": {
+        "Chatroom\\": "inc/classes"
+  
+      }
+    },
+    "authors": [
+        {
+            "name": "jarednova",
+            "email": "jared@upstatement.com"
+        }
+    ],
+    "repositories": [
+      {
+        "type": "composer",
+        "url": "https://wpackagist.org"
+      }
+    ]
+  }
