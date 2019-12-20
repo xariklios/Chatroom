@@ -15,7 +15,8 @@
     <title>Document</title>
 </head>
 <body>
-    <div class="loader-wrapper"></div>   
+    <div class="loader-wrapper">
+    </div>   
     <div class="bg">    
         <div class="container-register">
             <h2>Register</h2>
@@ -25,16 +26,16 @@
                         <input type="text" class="form-control" id="nickname" required placeholder="Enter Nickname" name="nickname" autocomplete="off">
                     </div>
                     <div class="form-group">
-                        <label for="email">Email:</label>
-                        <input type="email" class="form-control" id="email" required placeholder="Enter email" name="email" autocomplete="off">
+                        <label for="email-register">Email:</label>
+                        <input type="email" class="form-control" id="email-register" required placeholder="Enter email" name="email" autocomplete="off">
                     </div>
                     <div class="form-group">
                         <label for="pwd">Password:</label>
-                        <input type="password" class="form-control" id="pwd" required placeholder="Enter password" name="pwd">
+                        <input type="password" class="form-control" id="pwd-register" required placeholder="Enter password" name="pwd">
                     </div>
                     <div class="form-group">
                         <label for="re-pwd">Repeat Password:</label>
-                        <input type="password" class="form-control" id="re-pwd" required placeholder="Repeat password" name="re-pwd">
+                        <input type="password" class="form-control" id="re-pwd-register" required placeholder="Repeat password" name="re-pwd">
                     </div>
                     <h3>Sex</h3>
                     <div class="radio">

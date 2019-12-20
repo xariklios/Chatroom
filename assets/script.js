@@ -1,3 +1,4 @@
+//Set cookie for remember email
 function setCookie(cname, cvalue, exdays) {
   var d = new Date();
   d.setTime(d.getTime() + (exdays * 24 * 60 * 60 * 1000));
@@ -20,24 +21,18 @@ function getCookie(cname) {
   return "";
 }
 
-function checkCookie() {
-  var user = getCookie("username");
-  if (user != "") {
-    alert("Welcome again " + user);
-  } else {
-    user = prompt("Please enter your name:", "");
-    if (user != "" && user != null) {
-      setCookie("username", user, 365);
-    }
-  }
-}
-
+//loading gif
 
 $(window).on("load",function(){
   $(".loader-wrapper").fadeOut(1500);
+  $('#email-login').val(getCookie('_user_remember'));
 });
 
+
+
 $(document).ready(function(){
+
+//login ajax 
 
     $('form.login').on('submit',function(e){
       url = $(this).attr('action'),
@@ -75,7 +70,6 @@ $(document).ready(function(){
           
           if(data['remember'])
             setCookie('_user_remember',data['email'],30);
-
           $(location).attr('href', 'entry');
          }
         }
@@ -83,7 +77,7 @@ $(document).ready(function(){
       return false;
     });
 
-
+//register ajax
 
     $('form.register').on('submit',function(){
       url = $(this).attr('action'),

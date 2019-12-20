@@ -13,6 +13,10 @@
         \Chatroom\controllers\coreController::createView('entry');
     });
 
+    \Chatroom\Route::set('logout',function(){
+        \Chatroom\controllers\logout::logout();
+    });
+
 
     \Chatroom\Route::set('ajax-register',function(){
         \Chatroom\controllers\register::register();
