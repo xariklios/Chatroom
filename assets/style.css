@@ -3,6 +3,7 @@ body, html {
     overflow: hidden;
 }
 
+
 .jumbotron-fluid{
     background-image: url("grey.jpeg");
     background-size: cover;
@@ -108,7 +109,7 @@ body, html {
     background-size: cover;
 }
 
-.container-entry{
+.entry-page-container{
     background-image: url('heart.jpg');
     height: 100%;
     background-position: center;
@@ -130,56 +131,58 @@ body, html {
     margin-right:30px;
 }
 
-.chatbox-wrapper{
-    opacity:0.8;
+.container-chatbox{
+    position: relative;
+    width:500px;
+    opacity: 0.9;
+    filter: alpha(opacity=50); /* For IE8 and earlier */
     background-color:black;
-    text-align:center;
-    width:600px;
-    height:650px;
-    display:inline-block;
-    position:absolute;
-    left:50%;
-    top:60%;
-    transform: translate(-50%,-50%);
+    margin:0 auto;
+    top:120px;
 }
 
-@media screen and (max-width: 1100px),screen and (max-height: 750px)  {
-    .chatbox-wrapper {
-        width:400px;
-        height:500px;
-    }
-}
-
-@media screen and (max-height: 630px) {
-    .chatbox-wrapper {
-        width:300px;
+@media screen and (max-width: 450px) {
+    .container-chatbox {
+        width:100%;
         height:350px;
     }
 }
 
-
-@media screen and (max-height: 450px) {
-    .chatbox-wrapper {
-        display:none;
-    }
+.row{
+    margin:unset;
 }
 
-.message-show-area{
-    width:70%;
-    height:80%;
-    resize:none;
-    float:left;
+.col-8,.col-4,.col{
+    padding:unset;
+}
+.message-show{
+    border-right: 2px #92a8d1 solid;
+    border-bottom: #92a8d1 solid;
+    height:400px;
+    color:wheat;
 }
 
-.message-write-area{
-    float:left;
-    width:70%;
-    height:30%;
-    
-
+.users-online{
+    border-bottom: #92a8d1 solid;
+    height:400px;
+    color:rgb(37, 139, 37);
 }
-.textbox-send-message{
-    width:100%;
-    height:100%;
+.message-send{
+    display: flex;
+    border: 1px solid gray; 
+    width: 100%; 
+    height: 5em; 
+    overflow: hidden;
+    opacity:0.9;
+    color:white;
+    border-bottom:none;
+}
 
+.message-send textarea{
+    width: 100%;
+    height: 100%;
+    resize: none;
+    background-color: transparent;
+    border: none;
+    color:wheat;
 }

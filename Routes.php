@@ -27,5 +27,9 @@
         echo $response ? 1 : 0 ;
     });
 
+    \Chatroom\Route::set('ajax-msg-send',function(){
+        $n = \Chatroom\controllers\sendPublicMsg::sendMsg();  
+    });
+
 
 ?>

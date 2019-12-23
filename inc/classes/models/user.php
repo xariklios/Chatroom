@@ -20,7 +20,7 @@ class User extends \Chatroom\dbCon{
         if($pwd == $re_pwd){
             $mdpass = md5($pwd);
             $register_query="INSERT INTO user_tbl (nickname,email,password,sex) 
-            VALUES (:nickname,:email,:password,:sex)";
+                            VALUES (:nickname,:email,:password,:sex)";
 //prepare the SQL query string
              $login_pdo = $this->getPdo();
              $stm = $login_pdo->prepare($register_query);

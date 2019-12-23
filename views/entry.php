@@ -1,5 +1,10 @@
 <?php
     if (!isset($_SESSION)) session_start();
+    if(!isset($_SESSION['nickname'])){
+        header(
+            "Location: ./welcome"
+        );
+    }
 ?>
 
 <!DOCTYPE html>
@@ -19,38 +24,51 @@
     </head>
 
     <body>
-        <div class="loader-wrapper"></div>
+        <!-- <div class="loader-wrapper"></div> -->
         <div class="jumbotron jumbotron-fluid jumb-entry">
             <div class="container-entry-header">
                 <h1>Good to see you <?php echo $_SESSION["nickname"] ?></h1>      
                 <p>ValChat ..Connecting people since 2019</p>
-                <!-- <button type="button" class="btn btn-dark logout-btn" onclick="window.location.href='logout'">Logout</button>
+                <button type="button" class="btn btn-dark logout-btn" onclick="window.location.href='logout'">Logout</button>
             </div>
         </div> 
-        <div class="container-entry">
+        <div class="entry-page-container">
 
+            <div class="container-chatbox">
+                <div class="row">
+                    <div class="col-8">
+                        <div class="message-show">
 
-            
-                
-                <div class="chatbox-wrapper"> 
-                   <textarea readonly class="message-show-area">Amet venenatis urna cursus eget. Ipsum dolor sit amet consectetur. 
-                       Massa massa ultricies mi quis hendrerit. Lorem ipsum dolor sit amet consectetur adipiscing elit pellentesque. 
-                       Tempus imperdiet nulla malesuada pellentesque elit eget. Pulvinar sapien et ligula ullamcorper malesuada proin libero nunc consequat.
-                        Velit ut tortor pretium viverra. Massa tincidunt dui ut ornare lectus sit amet est. Aliquam sem fringilla ut morbi. 
-                        Euismod quis viverra nibh cras pulvinar mattis nunc. In metus vulputate eu scelerisque felis imperdiet.
-                    </textarea>
-               
-                    <div class="message-write-area">
-                        <input type="text" class="textbox-send-message">
+                        </div>
                     </div>
-                </div> -->
-               
-              
+                    <div class="col-4">
+                        <div class="users-online">
+                            <?php echo $_SESSION["nickname"] . " is Online"?>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col">
+                        <div class="message-send">
+                            <textarea placeholder='Type your msg..' class="msg-container"></textarea>
+                            <button type="button" class="btn btn-success" id="public_msg_send_btn">Send</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
 
 
-        
+
+
+
+            <div class="footer-copyright"style="background-color:black;">
+                <p>&copy Charis Valtzis<br>all rights reserved</p>
+            </div>
+
         </div>
-        
+
+
+ 
         
     </body>
 </html>

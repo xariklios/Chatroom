@@ -21,6 +21,9 @@ function getCookie(cname) {
   return "";
 }
 
+
+
+
 //loading gif
 
 $(window).on("load",function(){
@@ -31,6 +34,26 @@ $(window).on("load",function(){
 
 
 $(document).ready(function(){
+
+//send message on click ajax
+
+  $("#public_msg_send_btn").on("click",function(){
+    var content = $(".msg-container").val();
+    url = 'ajax-msg-send';
+    type = "post";
+    data = {
+      "content" : content
+    }
+
+    $.ajax({
+      url:url,
+      type:type,
+      data:data,
+      success: function(response){
+        $(".msg-container").val("");
+      }
+    });
+  });
 
 //login ajax 
 
@@ -67,7 +90,7 @@ $(document).ready(function(){
            $('#pwd').val("");
            $('.alert-danger').css("display", "block");
          }else{
-          
+//check if checkbox remember me is on and set cookie          
           if(data['remember'])
             setCookie('_user_remember',data['email'],30);
           $(location).attr('href', 'entry');
