@@ -20,16 +20,27 @@ class Messages extends \Chatroom\dbCon{
         $result = $sth_get_users->fetchColumn();
    
         $public_msg_query="INSERT INTO public_msg_tbl (content,usr_id) 
-                        VALUES (:nickname,:usr_id)";
+                        VALUES (:content,:usr_id)";
 //prepare the SQL query string
         $public_msg_pdo = $this->getPdo();
         $stm = $public_msg_pdo->prepare($public_msg_query);
 //bind parameters to statement variables
-        $stm->bindParam(':nickname',$nickname);
+        $stm->bindParam(':content',$content);
         $stm->bindParam(':usr_id',$result);
 // //execute statement 
         $stm->execute();
+        
     }
+
+    // public function getPublicMessages(){
+    //     $getMsg_query = "SELECT content 
+    //                     FROM public_msg_tbl 
+    //                     WHERE $result = usr_id";
+    //     $get_msg_pdo = $this->getpdo();//pdo
+    //     $sth_get_msg = $get_msg_pdo>prepare($getMsg_query);
+    //     $sth_get_msg->execute();
+    // }
+    
 }
 
 ?>

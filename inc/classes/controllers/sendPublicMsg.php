@@ -9,6 +9,8 @@ namespace Chatroom\controllers;
                 $public_msg_content =  filter_var($_POST['content']);        
                 $message = new \Chatroom\models\messages();
                 $message->publicMessages($public_msg_content);
+                // $message->getPublicMessages();
+                // var_dump($message);
             }
         }
         
