@@ -33,11 +33,12 @@
             </div>
         </div> 
         <div class="entry-page-container">
+        <input type="hidden" name="session_store" class="session_store" value="<?php echo $_SESSION['nickname']?>">
 
             <div class="container-chatbox">
                 <div class="row">
                     <div class="col-8">
-                        <div class="message-show">
+                        <div class="message-show" style="overflow: scroll;" id="message-show">
 
                         </div>
                     </div>
@@ -52,6 +53,7 @@
                         <div class="message-send">
                             <textarea placeholder='Type your msg..' class="msg-container"></textarea>
                             <button type="button" class="btn btn-success" id="public_msg_send_btn">Send</button>
+                            <input type="hidden" name="last_msg_id" id="last_msg_id" value="0">
                         </div>
                     </div>
                 </div>

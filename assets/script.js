@@ -21,6 +21,8 @@ function getCookie(cname) {
   return "";
 }
 
+//----------------------------------------------
+
 
 
 
@@ -30,12 +32,12 @@ $(window).on("load",function(){
   $(".loader-wrapper").fadeOut(1500);
   $('#email-login').val(getCookie('_user_remember'));
 });
-
+//----------------------------------------------
 
 
 $(document).ready(function(){
 
-//send message on click ajax
+  //send message on click ajax
 
   $("#public_msg_send_btn").on("click",function(){
     var content = $(".msg-container").val();
@@ -50,12 +52,47 @@ $(document).ready(function(){
       type:type,
       data:data,
       success: function(response){
-        $(".msg-container").val("");
+        if (response && response.status) {
+          $(".msg-container").val("");
+        }
       }
     });
   });
+  //----------------------------------------------
 
-//login ajax 
+  //retrieve new messages from db every 5 seconds..
+
+  setInterval(retrieveMsg,5000);
+
+  function retrieveMsg(){
+    var msg_last_id = $("#last_msg_id").val();
+    url = 'ajax-msg-receive';
+    type = "get";
+    data = {
+      "id" : msg_last_id
+    }
+
+    $.ajax({
+      url:url,
+      type:type,
+      data:data,
+      success: function(response){
+        console.log('test')
+        console.log(response);
+        if (response && response.status) {
+          $("#last_msg_id").val(response.lastid);
+          for (const msg of response.data) {
+            $('#message-show').append('<div>'+ $(".session_store").val() + "  Says:  " + msg.content +'</div>')
+          }
+        }
+      }
+    })
+    }
+
+  //------------------------------------------
+ 
+
+  //login ajax 
 
     $('form.login').on('submit',function(e){
       url = $(this).attr('action'),
@@ -90,7 +127,7 @@ $(document).ready(function(){
            $('#pwd').val("");
            $('.alert-danger').css("display", "block");
          }else{
-//check if checkbox remember me is on and set cookie          
+        //check if checkbox remember me is on and set cookie          
           if(data['remember'])
             setCookie('_user_remember',data['email'],30);
           $(location).attr('href', 'entry');
@@ -99,8 +136,9 @@ $(document).ready(function(){
       });
       return false;
     });
+  //----------------------------------------------
 
-//register ajax
+  //register ajax
 
     $('form.register').on('submit',function(){
       url = $(this).attr('action'),
@@ -130,11 +168,11 @@ $(document).ready(function(){
         success: function(response){
           $("form.register")[0].reset();
           alert("You have succesfully registered for ValChat!");
-          console.log(response);
         }
       });
       return false;
     });
+  //----------------------------------------------
   
 });
 

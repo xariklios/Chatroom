@@ -29,17 +29,34 @@ class Messages extends \Chatroom\dbCon{
         $stm->bindParam(':usr_id',$result);
 // //execute statement 
         $stm->execute();
-        
+        return [
+                "status" => true
+        ];
     }
 
-    // public function getPublicMessages(){
-    //     $getMsg_query = "SELECT content 
-    //                     FROM public_msg_tbl 
-    //                     WHERE $result = usr_id";
-    //     $get_msg_pdo = $this->getpdo();//pdo
-    //     $sth_get_msg = $get_msg_pdo>prepare($getMsg_query);
-    //     $sth_get_msg->execute();
-    // }
+    public function getPublicMessages($id){
+        $getMsg_query = "SELECT * 
+                        FROM public_msg_tbl
+                        WHERE $id < id
+                        ";
+        $get_msg_pdo = $this->getpdo();//pdo
+        $sth_get_msg = $get_msg_pdo->prepare($getMsg_query);
+        $sth_get_msg->execute();
+        $result = $sth_get_msg->setFetchMode(\PDO::FETCH_ASSOC);
+        $results = $sth_get_msg->fetchall();
+        if ($results) {
+                return [
+                        "status" => true,
+                        "lastid" => end($results)['id'],
+                        "data" => $results
+                ];
+        } else {
+                return [
+                        "status" => false
+                ];
+        }
+        
+    }
     
 }
 

@@ -28,7 +28,15 @@
     });
 
     \Chatroom\Route::set('ajax-msg-send',function(){
-        $n = \Chatroom\controllers\sendPublicMsg::sendMsg();  
+        $response = \Chatroom\controllers\sendPublicMsg::sendMsg();  
+        header('Content-Type: application/json');
+        echo json_encode($response);
+    });
+
+    \Chatroom\Route::set('ajax-msg-receive',function(){
+        $response = \Chatroom\controllers\sendPublicMsg::receiveNewMsg();  
+        header('Content-Type: application/json');
+        echo json_encode($response);
     });
 
 
