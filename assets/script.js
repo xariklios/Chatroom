@@ -37,8 +37,8 @@ $(window).on("load",function(){
 
 $(document).ready(function(){
 
-  //send message on click ajax
-
+  //send message on click ajax 
+ 
   $("#public_msg_send_btn").on("click",function(){
     var content = $(".msg-container").val();
     url = 'ajax-msg-send';
@@ -58,36 +58,37 @@ $(document).ready(function(){
       }
     });
   });
+  
   //----------------------------------------------
 
-  //retrieve new messages from db every 5 seconds..
+  //retrieve new messages from db every 5 seconds only in entry page..
+  if (window.location.href === 'http://localhost/chatroom/entry'){
+    setInterval(retrieveMsg,5000);
 
-  setInterval(retrieveMsg,5000);
+    function retrieveMsg(){
+      var msg_last_id = $("#last_msg_id").val();
+      url = 'ajax-msg-receive';
+      type = "get";
+      data = {
+        "id" : msg_last_id
+      }
 
-  function retrieveMsg(){
-    var msg_last_id = $("#last_msg_id").val();
-    url = 'ajax-msg-receive';
-    type = "get";
-    data = {
-      "id" : msg_last_id
-    }
-
-    $.ajax({
-      url:url,
-      type:type,
-      data:data,
-      success: function(response){
-        console.log('test')
-        console.log(response);
-        if (response && response.status) {
-          $("#last_msg_id").val(response.lastid);
-          for (const msg of response.data) {
-            $('#message-show').append('<div>'+ $(".session_store").val() + "  Says:  " + msg.content +'</div>')
+      $.ajax({
+        url:url,
+        type:type,
+        data:data,
+        success: function(response){
+          console.log(response);
+          if (response && response.status) {
+            $("#last_msg_id").val(response.lastid);
+            for (const msg of response.data) {
+              $('#message-show').append('<div>'+ $(".session_store").val() + "  Says:  " + msg.content +'</div>')
+            }
           }
         }
+      })
       }
-    })
-    }
+  }
 
   //------------------------------------------
  

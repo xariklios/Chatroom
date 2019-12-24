@@ -37,8 +37,7 @@ class Messages extends \Chatroom\dbCon{
     public function getPublicMessages($id){
         $getMsg_query = "SELECT * 
                         FROM public_msg_tbl
-                        WHERE $id < id
-                        ";
+                        WHERE $id < id";
         $get_msg_pdo = $this->getpdo();//pdo
         $sth_get_msg = $get_msg_pdo->prepare($getMsg_query);
         $sth_get_msg->execute();
