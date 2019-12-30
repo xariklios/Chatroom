@@ -1,7 +1,7 @@
 <?php
 namespace Chatroom\Models;
 
-session_start();
+if (!isset($_SESSION)) session_start();
 
 
 use Chatroom;
@@ -34,6 +34,20 @@ class User extends \Chatroom\dbCon{
             return true;
         }
  
+    }
+
+//get online users from db
+
+    public function get_online_users(){
+        $get_online_users_query = "SELECT nickname 
+                                FROM user_tbl 
+                                WHERE user_online = 1";
+        $get_online_users_pdo = $this->getPdo();
+        $get_online_users_stm = $get_online_users_pdo->prepare($get_online_users_query);
+        $get_online_users_stm->execute();
+        $result = $get_online_users_stm->setFetchMode(\PDO::FETCH_ASSOC);
+        $result = $get_online_users_stm->fetchAll();
+        return $result;
     }
 
 }

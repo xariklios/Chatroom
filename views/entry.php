@@ -24,7 +24,7 @@
     </head>
 
     <body>
-        <!-- <div class="loader-wrapper"></div> -->
+        <div class="loader-wrapper"></div>
         <div class="jumbotron jumbotron-fluid jumb-entry">
             <div class="container-entry-header">
                 <h1>Good to see you <?php echo $_SESSION["nickname"] ?></h1>      
@@ -33,18 +33,25 @@
             </div>
         </div> 
         <div class="entry-page-container">
-        <input type="hidden" name="session_store" class="session_store" value="<?php echo $_SESSION['nickname']?>">
 
             <div class="container-chatbox">
                 <div class="row">
                     <div class="col-8">
-                        <div class="message-show" style="overflow: scroll;" id="message-show">
+                        <div class="message-show" id="message-show">
 
                         </div>
                     </div>
                     <div class="col-4">
                         <div class="users-online">
-                            <?php echo $_SESSION["nickname"] . " is Online"?>
+                            <div class="row">
+                                <div class="col-sm-12" style="display:contents">
+                                    <?php foreach($templateVars['online_users'] as $online_user) {
+                                        echo $online_user['nickname'] . ' is online<br>';
+                                        echo "<button type='button' class='btn btn-dark' id='pm_btn'>pm</button>";
+                                        }
+                                    ?>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -60,8 +67,47 @@
             </div>
 
 
+            <div class="private-chats-wrapper"> 
+                                                      
+                <div class="prive-chats-container">
 
+                    <div class="private-chat">
+                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Incidunt tempore maxime animi, nam voluptatem dolore cupiditate labore architecto ratione error quo, hic temporibus ducimus nostrum ea aperiam odio, quam esse!
+                    </div>
 
+                    <div class="private-chat">
+                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Incidunt tempore maxime animi, nam voluptatem dolore cupiditate labore architecto ratione error quo, hic temporibus ducimus nostrum ea aperiam odio, quam esse!
+                    </div>
+
+                    <div class="private-chat">
+                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Incidunt tempore maxime animi, nam voluptatem dolore cupiditate labore architecto ratione error quo, hic temporibus ducimus nostrum ea aperiam odio, quam esse!
+                    </div>
+
+                </div>
+
+            </div>
+
+            <!-- <div class="container-private-chat">
+                <div class="row">
+                    <div class="col-10 header_private">
+                    </div> 
+                    <div class="col-2 header-close-private-chat">
+                        <div class="close-button-container">
+                            <button type="button" class="btn btn-dark" id="private_msg_close_btn">X</button>
+                        </div>
+                    </div>
+                </div>  
+                <div class="row">
+                    <div class="col-12 private-content">
+                    </div> 
+                </div>    
+                <div class="row">
+                    <div class="col-8 private-message-send">
+                    </div> 
+                    <div class="col-4">
+                    </div> 
+                </div>                        
+            </div> -->
 
             <div class="footer-copyright"style="background-color:black;">
                 <p>&copy Charis Valtzis<br>all rights reserved</p>
@@ -69,9 +115,6 @@
 
         </div>
 
-
- 
-        
     </body>
 </html>
 

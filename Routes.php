@@ -10,7 +10,11 @@
     });
 
     \Chatroom\Route::set('entry',function(){
-        \Chatroom\controllers\coreController::createView('entry');
+        $get_online_users = new \Chatroom\models\user();
+        $online_users_response = $get_online_users->get_online_users();
+        \Chatroom\controllers\coreController::createView('entry',[
+            'online_users' => $online_users_response
+        ]);
     });
 
     \Chatroom\Route::set('logout',function(){
@@ -24,7 +28,8 @@
 
     \Chatroom\Route::set('ajax-login',function(){
         $response = \Chatroom\controllers\Login::login();
-        echo $response ? 1 : 0 ;
+        echo json_encode($response);
+        die();
     });
 
     \Chatroom\Route::set('ajax-msg-send',function(){

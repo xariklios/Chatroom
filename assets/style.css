@@ -101,13 +101,13 @@ body, html {
     display:none;
 }
 
-.loader-wrapper{
+/* .loader-wrapper{
     background-image:url('loading.gif');
     height: 100%;
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
-}
+} */
 
 .entry-page-container{
     background-image: url('heart.jpg');
@@ -156,10 +156,14 @@ body, html {
     padding:unset;
 }
 .message-show{
+    width:100%;
     border-right: 2px #92a8d1 solid;
     border-bottom: #92a8d1 solid;
     height:400px;
     color:wheat;
+    overflow: scroll;
+    word-wrap: break-word;
+    overflow-x: hidden;
 }
 
 .users-online{
@@ -185,4 +189,71 @@ body, html {
     background-color: transparent;
     border: none;
     color:wheat;
+}
+
+#pm_btn{
+    padding:unset !important;
+}
+
+.container-private-chat{
+    width:300px;
+    opacity: 0.9;
+    filter: alpha(opacity=50); /* For IE8 and earlier */
+    background-color:black;
+    position: absolute;
+    bottom:65px;
+    right: 26px;
+
+    
+}
+.header_private{
+    background-color:red;
+    height:40px;
+    padding-left:unset !important;
+    padding-right:unset !important;
+    
+}
+
+#private_msg_close_btn{
+    width:100%;
+}
+
+.private-content{
+    height:250px;
+    background-color:yellow;
+}
+
+.header-close-private-chat{
+    padding-left:unset !important;
+    padding-right:unset !important;
+}
+
+.private-message-send{
+    height:50px;
+    background-color: turquoise;
+}
+
+.private-chat {
+    background: black;
+    color:wheat;
+    opacity:0.9;
+    float: right;
+    /* width: 33.33%; */
+    padding: 15px;
+    max-width: 200px;
+    border: 1px solid yellow;
+    width: 100%;
+    max-height: 200px;
+    transition: transform 0.3s ease;
+    overflow: auto;
+    transform: translateY(0) !important;
+}
+
+.private-chats-wrapper{
+    position: fixed;
+    right: 0;
+    bottom: 64px;
+    width: 100%;
+    z-index: 999;
+    
 }

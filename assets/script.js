@@ -78,16 +78,20 @@ $(document).ready(function(){
         type:type,
         data:data,
         success: function(response){
-          console.log(response);
           if (response && response.status) {
-            $("#last_msg_id").val(response.lastid);
-            for (const msg of response.data) {
-              $('#message-show').append('<div>'+ $(".session_store").val() + "  Says:  " + msg.content +'</div>')
+            $("#last_msg_id").val(response.lastid);   
+            for (const msg of response.data) {  
+              for(const sender of response.send_data){   
+                if(msg.usr_id === sender.id){
+                   $('#message-show').append('<div>'+ sender.nickname + "  Says:  " + msg.content +'</div>');
+                   break;
+                }
+              }              
             }
           }
         }
       })
-      }
+    }
   }
 
   //------------------------------------------
@@ -123,17 +127,14 @@ $(document).ready(function(){
         url:url,
         type:type,
         data:data,
+        dataType: 'json',
         success: function(response){
-         if(response==='0'){
-           $('#pwd').val("");
-           $('.alert-danger').css("display", "block");
-         }else{
-        //check if checkbox remember me is on and set cookie          
-          if(data['remember'])
-            setCookie('_user_remember',data['email'],30);
-          $(location).attr('href', 'entry');
-         }
-        }
+          if(response.loggedIn) {
+            $(location).attr('href', 'entry');
+          }else {
+            alert(response.message);
+          }
+        },
       });
       return false;
     });
